@@ -38,3 +38,26 @@ do
     end
 end
 return lib
+--[[
+Exmaple : 
+local lib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SEFLASe32/chunk/refs/heads/main/lib.lua"))({
+	chunk_func = true
+})
+local chunk_sim = {0x2D,0x00,0x01,0x02,0x03,0x9,0x87,0x04,0x065}
+local sig_sim = {0x2D,0x00,0x01,0x02,0x03}
+local mask = "x"
+if lib.chunk_compare(chunk_sim,sig_sim,mask) then
+	print("Signature Match Chunk")
+end
+local index = lib.chunk_sreach(chunk_sim,sig_sim,mask)
+if index then
+	print("lib Chunk Sreach Found ", index)
+end
+local udex,size,con = lib.chunk_find_sub(chunk_sim,{0x2D,0x87})
+if udex then
+	print("sub instruction index",udex)
+	print("Instruction Size",size)
+	print("Constant",con)
+end
+
+]]
